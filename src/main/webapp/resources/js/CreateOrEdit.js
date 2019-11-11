@@ -16,8 +16,8 @@ function insertClientHTML(client) {
     $('[name="surname"]').val(client.surname);
     $('[name="middlename"]').val(client.middlename);
     $('[name="birthDate"]').val(client.birthDate.slice(6) + '-' + client.birthDate.slice(3, 5)+ '-'+ client.birthDate.slice(0, 2));
-    $('[name="passportId"]').val(+client.passportId.slice(0, 4));
-    $('[name="passportId2"]').val(+client.passportId.slice(5));
+    $('[name="passportId"]').val(+client.passportIdSeries);
+    $('[name="passportId2"]').val(+client.passportIdNumber);
 }
 
 function pickClient(elem){
@@ -44,8 +44,6 @@ function dataClientsUpdate(){
 }
 
 let dataClients ={};
-$('[name="passportId"]').val(passId);
-$('[name="passportId2"]').val(passId2);
 
 $(document).ready(function () {
     dataClientsUpdate();
@@ -93,7 +91,7 @@ $(document).on("click",'[name="pickClient"]',function () {
                         '<span>' + item.birthDate + '</span>'+
                     '</div>'+
                     '<div class="col-3 modal-col">'+
-                        '<span>'+ item.passportId.replace(","," ") +'</span>'+
+                        '<span>'+ item.passportIdSeries + " "+ item.passportIdNumber +'</span>'+
                     '</div>'+
                     '<div class="col-2 modal-col">'+
                         '<button type="button" class="btn btn-dark" onclick="pickClient(this)" id="'+item.id+'">Выбрать</button>'+
@@ -145,10 +143,10 @@ $(document).on("click",'[name="editClient"]',function () {
                 '<label>Дата рождения</label><input type="date" name="clientBirthDate" value="'+dataClients.birthDate.slice(6) + '-' + dataClients.birthDate.slice(3, 5)+ '-'+ dataClients.birthDate.slice(0, 2)+'"/>' +
             '</div>'+
             '<div class="col-4 modal-col">'+
-                '<label>Серия</label><input type="number" name="clientPassportId" value="'+dataClients.passportId.slice(0, 4)+'"/>'+
+                '<label>Серия</label><input type="number" maxlength="4" name="clientPassportId" value="'+dataClients.passportIdSeries+'"/>'+
             '</div>'+
             '<div class="col-4 modal-col">'+
-                '<label>Номер</label><input type="number" name="clientPassportId2" value="'+dataClients.passportId.slice(5)+'"/>'+
+                '<label>Номер</label><input type="number" maxlength="6" name="clientPassportId2" value="'+dataClients.passportIdNumber+'"/>'+
             '</div>'+
         '</div></form>';
     $(htmlDialog).dialog({
@@ -203,10 +201,10 @@ $(document).on("click",'[name="addClient"]',function () {
                 '<label>Дата рождения</label><input type="date" name="clientBirthDate" value=""/>' +
             '</div>'+
             '<div class="col-4 modal-col">'+
-                '<label>Серия</label><input type="number" name="clientPassportId" value=""/>'+
+                '<label>Серия</label><input type="number" maxlength="4" name="clientPassportId" value=""/>'+
             '</div>'+
             '<div class="col-4 modal-col">'+
-                '<label>Номер</label><input type="number" name="clientPassportId2" value=""/>'+
+                '<label>Номер</label><input type="number" maxlength="6" name="clientPassportId2" value=""/>'+
             '</div>'+
         '</div></form>';
     $(htmlDialog).dialog({

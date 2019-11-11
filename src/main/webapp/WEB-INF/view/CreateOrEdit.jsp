@@ -14,8 +14,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script>
         let curDate = "<%= new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()) %>"; // Передача даты в js для дальнейшей вставки при расчёте
-        let passId = "<fmt:formatNumber minIntegerDigits="4" pattern="####" value="${client.passportId}"/>"; // Передача паспорта частями для вставки в input
-        let passId2 = "<fmt:formatNumber maxIntegerDigits="0" minFractionDigits="6" pattern="######" value="${client.passportId}"/>".substr(1);
     </script>
 </head>
 
@@ -162,11 +160,11 @@
                 </div>
                 <div class="col-3">
                     <label>Серия</label>
-                    <label><input type="number" name="passportId" value="" readonly/></label>
+                    <label><input type="number" maxlength="4" name="passportId" value="${client.passportIdSeries}" readonly/></label>
                 </div>
                 <div class="col-3">
                     <label>Номер</label>
-                    <label><input type="number" name="passportId2" value="" readonly/></label>
+                    <label><input type="number" maxlength="6" name="passportId2" value="${client.passportIdNumber}" readonly/></label>
                 </div>
             </div>
         </div>

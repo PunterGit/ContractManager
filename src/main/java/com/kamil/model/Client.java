@@ -13,18 +13,20 @@ public class Client{
     private String surname;
     private String middlename;
     private Date birthDate;
-    private float passportId;
+    private int passportIdSeries;
+    private int passportIdNumber;
 
     public Client (){
     }
 
-    public Client (String name, String surname, String middlename, Date birthDate, float passportId) {
+    public Client (String name, String surname, String middlename, Date birthDate, int passportIdSeries, int passportIdNumber) {
         super();
         this.name = name;
         this.surname = surname;
         this.middlename = middlename;
         this.birthDate = birthDate;
-        this.passportId = passportId;
+        this.passportIdSeries = passportIdSeries;
+        this.passportIdNumber = passportIdNumber;
     }
 
     @Id
@@ -79,13 +81,23 @@ public class Client{
     }
 
     @Basic
-    @Column(name = "passport_id", nullable = false, insertable = true, updatable = true)
-    public float getPassportId() {
-        return passportId;
+    @Column(name = "passport_id_series", nullable = false, insertable = true, updatable = true)
+    public int getPassportIdSeries() {
+        return passportIdSeries;
     }
 
-    public void setPassportId(float passportId) {
-        this.passportId = passportId;
+    public void setPassportIdSeries(int passportIdSeries) {
+        this.passportIdSeries = passportIdSeries;
+    }
+
+    @Basic
+    @Column(name = "passport_id_number", nullable = false, insertable = true, updatable = true)
+    public int getPassportIdNumber() {
+        return passportIdNumber;
+    }
+
+    public void setPassportIdNumber(int passportIdNumber) {
+        this.passportIdNumber = passportIdNumber;
     }
 
 
@@ -96,7 +108,8 @@ public class Client{
                 ", surname:'" + surname + "'" +
                 ", middlename:'" + middlename + "'" +
                 ", birthDate:'" + new SimpleDateFormat("dd.MM.yyyy").format(birthDate) + "'" +
-                ", passportId:'" + String.format("%.6f", passportId) + "'" +
+                ", passportIdSeries:'" + passportIdSeries + "'" +
+                ", passportIdNumber:'" + passportIdNumber + "'" +
                 '}';
     }
 }

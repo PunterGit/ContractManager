@@ -16,12 +16,10 @@ import java.io.IOException;
 public class ContractListServlet extends HttpServlet {
 
     private ContractService contractService = new ContractServiceImpl();
-    private ClientService clientService = new ClientServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("contracts", contractService.getContracts());
-        request.setAttribute("clients", clientService.getClients());
         request.getRequestDispatcher("/WEB-INF/view/ContractList.jsp").forward(request,response);
     }
 }

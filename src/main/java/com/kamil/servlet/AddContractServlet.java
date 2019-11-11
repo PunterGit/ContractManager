@@ -2,6 +2,8 @@ package com.kamil.servlet;
 
 
 import com.kamil.model.Contract;
+import com.kamil.service.ClientService;
+import com.kamil.service.ClientServiceImpl;
 import com.kamil.service.ContractService;
 import com.kamil.service.ContractServiceImpl;
 
@@ -19,6 +21,7 @@ public class AddContractServlet extends HttpServlet {
 
 
     private ContractService contractService = new ContractServiceImpl();
+    private ClientService clientService = new ClientServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,7 +63,7 @@ public class AddContractServlet extends HttpServlet {
         contract.setBuilding(request.getParameter("building"));
         contract.setApartment(request.getParameter("apartment"));
         contract.setComment(request.getParameter("comment"));
-        contract.setClientId(Integer.parseInt(request.getParameter("clientId")));
+        contract.setClientId(clientService.getClientById(Integer.parseInt(request.getParameter("clientId"))));
         contractService.addContract(contract);
         response.sendRedirect("/list");
     }

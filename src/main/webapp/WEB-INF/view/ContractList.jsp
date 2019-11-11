@@ -9,9 +9,6 @@
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script>
-        let clients = ${clients};
-    </script>
 </head>
 
 <body>
@@ -48,14 +45,14 @@
         <div class="row">
             <div class="col-2"> <fmt:formatNumber pattern="000000" value="${tempContract.id}"/> </div>
             <div class="col-2"> ${tempContract.contractDate} </div>
-            <div class="col-3 fio" id="${tempContract.clientId}"></div>
+            <div class="col-3">${tempContract.clientId.surname} ${tempContract.clientId.name} ${tempContract.clientId.middlename}</div>
             <div class="col-1"> ${tempContract.insurancePremium} </div>
             <div class="col-2"> <fmt:formatDate value="${tempContract.insuranceStartDate}" pattern="dd.MM.yyyy"/>-<fmt:formatDate value="${tempContract.insuranceEndDate}" pattern="dd.MM.yyyy"/> </div>
             <div class="col-2">
                 <button class="btn btn-dark" type="button" onclick="location.href='${updateLink}'">Update</button>
                 <button class="btn btn-dark" type="button"
                         onclick="if (!(confirm('Вы уверены, что хотите удалить договор?'))) return false;
-                        else {location.href='${deleteLink}'}">Delete</button>
+                                else {location.href='${deleteLink}'}">Delete</button>
             </div>
         </div>
     </c:forEach>
@@ -66,7 +63,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/ContractList.js"></script>
 </html>
-
 
 
 

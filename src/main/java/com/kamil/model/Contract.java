@@ -28,13 +28,13 @@ public class Contract {
     private String building; // строение
     private String apartment; // квартира
     private String comment; // комментарий
-    private int clientId; // id клиента
+    private Client clientId; // id клиента
 
     public Contract () {
 
     }
 
-    public Contract (int postcode, int constructionYear, float insuranceSum, float insurancePremium, float area, Date insuranceStartDate, Date insuranceEndDate, Date computationDate, Date contractDate, String property, String country, String republic, String region, String locality, String street, String house, String housing, String building, String apartment, String comment, int clientId) {
+    public Contract (int postcode, int constructionYear, float insuranceSum, float insurancePremium, float area, Date insuranceStartDate, Date insuranceEndDate, Date computationDate, Date contractDate, String property, String country, String republic, String region, String locality, String street, String house, String housing, String building, String apartment, String comment, Client clientId) {
         super();
         this.postcode = postcode;
         this.constructionYear = constructionYear;
@@ -269,13 +269,13 @@ public class Contract {
         this.comment = comment;
     }
 
-    @Basic
-    @Column(name = "client_id", nullable = false, insertable = true, updatable = true)
-    public int getClientId() {
+    @ManyToOne
+    @JoinColumn(name="client_id")
+    public Client getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Client clientId) {
         this.clientId = clientId;
     }
 

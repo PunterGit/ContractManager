@@ -45,7 +45,8 @@ public class AddClientServlet extends HttpServlet {
         client.setName(request.getParameter("clientName"));
         client.setMiddlename(request.getParameter("clientMiddlename"));
         client.setSurname(request.getParameter("clientSurname"));
-        client.setPassportId(Float.parseFloat(request.getParameter("clientPassportId")+"."+request.getParameter("clientPassportId2")));
+        client.setPassportIdSeries(Integer.parseInt(request.getParameter("clientPassportId")));
+        client.setPassportIdNumber(Integer.parseInt(request.getParameter("clientPassportId2")));
         String clientId = Integer.toString(contractService.addClient(client));
         response.getOutputStream().write(clientId.getBytes("UTF-8"));
     }

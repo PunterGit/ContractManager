@@ -26,7 +26,7 @@ public class UpdateContractServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("contractId");
         Contract contract = contractService.getContractById(Integer.parseInt(id));
-        Client client = clientService.getClientById(contract.getClientId());
+        Client client = clientService.getClientById(contract.getClientId().getId());
         request.setAttribute("contract", contract);
         request.setAttribute("client", client);
         request.getRequestDispatcher("/WEB-INF/view/CreateOrEdit.jsp").forward(request,response);
